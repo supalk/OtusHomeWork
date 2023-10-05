@@ -30,16 +30,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
 RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
 
-#RUN usermod -u 1000 www-data
-
-#USER www-data;
-
-#WORKDIR /var/www/html
-
-#RUN usermod -u UID www-data
-
-#RUN usermod www-data -a -G phill
-#RUN usermod -u 1000 www-data
-
-
 RUN chown -R www-data:www-data /var/www/html
+

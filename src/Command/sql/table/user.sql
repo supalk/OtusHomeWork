@@ -1,4 +1,4 @@
---drop table if exists users;
+drop table if exists users;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id bigserial primary key not null,
@@ -11,13 +11,4 @@ CREATE TABLE IF NOT EXISTS users (
     biography varchar null,
     city varchar null,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS log_db_query (
-    id serial primary key NOT NULL,
-    user_id int NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    query_sql text NOT NULL,
-    query_time int NULL,
-    query_errors text NULL
 );

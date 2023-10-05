@@ -1,5 +1,6 @@
 <?php
 
+use App\Action;
 use App\Middleware\AppMiddleware;
 use App\Middleware\AuthMiddleware;
 use Slim\App;
@@ -13,17 +14,20 @@ return function (App $app) {
 //
 //    });
 
-    $app->post('/login', \App\Action\UserAction::class.":login")
+    $app->post('/login', Action\UserAction::class.":login")
         ->setName('login');
 
-    $app->post('/user/register', \App\Action\UserAction::class.":register")
+    $app->post('/user/register', Action\UserAction::class.":register")
         ->setName('user.register');
 
-    $app->get('/user/get[/{id:[0-9]+}]', \App\Action\UserAction::class.":getItem")
+    $app->get('/user/get[/{id:[0-9]+}]', Action\UserAction::class.":getItem")
         ->add(AuthMiddleware::class)
         ->setName('user.get');
 
-    $app->get('/', \App\Action\HomeAction::class);
-    $app->get('/start', \App\Action\StartAction::class);
+    $app->get('/user/search', Action\UserAction::class.":searchUser")
+        ->add(AuthMiddleware::class)
+        ->setName('user.get');
+
+    $app->get('/', Action\HomeAction::class);
 
 };

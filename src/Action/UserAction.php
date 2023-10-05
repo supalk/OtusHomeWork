@@ -68,4 +68,33 @@ final class UserAction extends BaseAction
 
         return $this->apiResponse($response, $user);
     }
+
+    public function searchUser(Request $request, Response $response): Response
+    {
+        $params = $request->getQueryParams();
+        if (!isset($params['first_name']) || !isset($params['last_name'])){
+            $request = $request->withAttribute('http_code', 400);
+            throw new HttpException($request,"Невалидные данные", 400);
+        }
+
+        try {
+            $user = $this->db->query_array(sprintf(/** @lang */
+                "select user_id, name, surname, lastname, gender, biography, city 
+                from users 
+                where lower(name) like '%s%%'
+                and lower(surname) like '%s%%'
+                ",
+                mb_strtolower($this->db->escape_string($params['first_name'])),
+                mb_strtolower($this->db->escape_string($params['last_name']))
+            ));
+
+        }catch (\Exception $e){
+            $request = $request->withAttribute('http_code', 500);
+            throw new HttpException($request,"Ошибка выполнения запроса", 500);
+        }
+
+        return $this->apiResponse($response, $user??[]);
+    }
+
+
 }

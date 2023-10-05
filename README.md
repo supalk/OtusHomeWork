@@ -1,12 +1,8 @@
-# Домашнее задание "Заготовка для социальной сети" 
-#### (OTUS Highload Architect) #### 
-API скелет для социальной сети.  
-Разработанные методы:
- - /login
- - /user/register
- - /user/get/{id}  с авторизацией Cookie
- 
-Postman-коллекция  wh_sak.postman_collection.json
+# Обучение (24.08.2023 - ... )
+### (OTUS Highload Architect) ### 
+Разработка социальной сети.  
+
+Postman-коллекция  [wh_sak.postman_collection.json](report/wh_sak.postman_collection.json)
 
 Основано на Slim v4
  - PHP >= 8.1
@@ -36,8 +32,22 @@ Docker, docker compose
 
 - Запускаем создание сущностей для БД 
 
-  `http://localhost:8080/start`
+  `docker-compose exec php php cli.php app:createTable`
+ 
+- Запускаем генерацию анкет (N - 1 000 000).  
+Можно дополнительным параметром передать количество генерируемых анкет 
+
+  - `docker-compose exec php php cli.php app:fillingUsers`
+  - `docker-compose exec php php cli.php app:fillingUsers 100`
+  
+Для авторизации можно использовать пару Логин: user_{N} и Пароль: psw{N}
 
 - Готово! http://localhost:8080/
-
+ 
   `docker compose ps`
+ 
+## Домашние задание
+1. [Заготовка для социальной сети](./report/work-1/readme.md)
+2. [Производительность индексов](./report/work-2/readme.md)
+
+
