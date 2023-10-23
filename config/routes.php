@@ -25,7 +25,7 @@ return function (App $app) {
         ->setName('user.get');
 
     $app->get('/user/search', Action\UserAction::class.":searchUser")
-        ->add(AuthMiddleware::class)
+      //  ->add(AuthMiddleware::class)
         ->setName('user.get');
 
     $app->get('/', Action\HomeAction::class);

@@ -54,7 +54,7 @@ final class UserAction extends BaseAction
             $id = $auth->user->user_id;
         }
 
-        $user = $this->db->query_row(sprintf(/** @lang */
+        $user = $this->db_read->query_row(sprintf(/** @lang */
             "select user_id, name, surname, lastname, gender, biography, city 
             from users 
             where user_id=%d",
@@ -78,7 +78,7 @@ final class UserAction extends BaseAction
         }
 
         try {
-            $user = $this->db->query_array(sprintf(/** @lang */
+            $user = $this->db_read->query_array(sprintf(/** @lang */
                 "select user_id, name, surname, lastname, gender, biography, city 
                 from users 
                 where lower(name) like '%s%%'

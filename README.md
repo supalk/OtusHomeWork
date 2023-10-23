@@ -49,5 +49,6 @@ Docker, docker compose
 ## Домашние задание
 1. [Заготовка для социальной сети](./report/work-1/readme.md)
 2. [Производительность индексов](./report/work-2/readme.md)
+2. [Полусинхронная репликация](./report/work-3/readme.md)
 
 
