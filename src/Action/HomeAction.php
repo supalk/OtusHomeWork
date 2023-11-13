@@ -9,7 +9,7 @@ final class HomeAction extends BaseAction
 {
     public function __invoke(Request $request, Response $response): Response
     {
-        $this->db->query(/** @lang */ 'select * from users');
+        $this->db->query(/** @lang */ 'select * from users limit 1');
         $response->getBody()->write(json_encode(['hello' => 'world']));
 
         return $response->withHeader('Content-Type', 'application/json');

@@ -7,6 +7,7 @@ ini_set('display_errors', '1');
 
 // Settings
 $settings = [
+    "displayErrorDetails"=>true,
     "db" => [
         'driver' => 'pgsql',
         'host' => $_ENV['DB_HOST'] ?? 'localhost',

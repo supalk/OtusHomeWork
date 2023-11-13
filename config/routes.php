@@ -10,7 +10,7 @@ use Slim\App;
 return function (App $app) {
 
     $app->add(new AppMiddleware());
-//    $app->group('/users', function (RouteCollectorProxy $group) {
+//    $app->group('/api', function (RouteCollectorProxy $group) {
 //
 //    });
 
@@ -25,8 +25,36 @@ return function (App $app) {
         ->setName('user.get');
 
     $app->get('/user/search', Action\UserAction::class.":searchUser")
-      //  ->add(AuthMiddleware::class)
-        ->setName('user.get');
+        ->add(AuthMiddleware::class)
+        ->setName('user.search');
+
+    $app->put('/friend/set/{id:[0-9]+}', Action\FriendAction::class.":set")
+        ->add(AuthMiddleware::class)
+        ->setName('friend.set');
+
+    $app->put('/friend/delete/{id:[0-9]+}', Action\FriendAction::class.":delete")
+        ->add(AuthMiddleware::class)
+        ->setName('friend.delete');
+
+    $app->post('/post/create', Action\PostAction::class.":create")
+        ->add(AuthMiddleware::class)
+        ->setName('post.create');
+
+    $app->put('/post/update', Action\PostAction::class.":update")
+        ->add(AuthMiddleware::class)
+        ->setName('post.update');
+
+    $app->put('/post/delete', Action\PostAction::class.":delete")
+        ->add(AuthMiddleware::class)
+        ->setName('post.delete');
+
+    $app->get('/post/get/{id}', Action\PostAction::class.":get")
+        ->add(AuthMiddleware::class)
+        ->setName('post.get');
+
+    $app->get('/post/feed', Action\PostAction::class.":feed")
+        ->add(AuthMiddleware::class)
+        ->setName('post.feed');
 
     $app->get('/', Action\HomeAction::class);
 

@@ -12,9 +12,7 @@ final class UserAction extends BaseAction
 {
     public function login(Request $request, Response $response): Response
     {
-        /** @var Auth $auth */
-        $auth = $this->container->get(Auth::class);
-        $auth->login($request);
+        $this->auth->login($request);
 
         return $this->apiResponse($response, ["message" => "Успешная аутентификация"]);
     }
